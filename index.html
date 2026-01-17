@@ -1699,7 +1699,7 @@
 
     <script>
       // Target date: January 18, 2026, 00:00:00
-      const targetDate = new Date("January 18, 2026 00:08:00").getTime();
+      const targetDate = new Date("January 18, 2026 00:18:00").getTime();
       const correctPassword = "807401"; // Tanggal lahir Bunga (DDMMYY)
       let countdownInterval;
       let isBirthday = false;
@@ -1722,7 +1722,8 @@
 
           // Show birthday celebration
           if (!isBirthday) {
-            celebrateBirthday();
+            // Show romantic birthday alert
+            showRomanticBirthdayAlert();
             isBirthday = true;
           }
           return;
@@ -1743,10 +1744,91 @@
         document.getElementById("seconds").innerText = seconds;
       }
 
+      // Function to show romantic birthday alert
+      function showRomanticBirthdayAlert() {
+        // Create custom alert
+        const alertDiv = document.createElement("div");
+        alertDiv.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.5s ease;
+  `;
+
+        alertDiv.innerHTML = `
+    <div style="
+      background: linear-gradient(135deg, #ff6b9d, #c44569);
+      color: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      max-width: 500px;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      animation: slideIn 0.5s ease;
+    ">
+      <div style="font-size: 60px; margin-bottom: 20px;">🎉💕🎂</div>
+      <h2 style="margin: 0 0 30px 0; font-size: 32px;">Happy Birthday Sayang! 💖</h2>
+      <button id="showCakeButton" style="
+        padding: 15px 30px;
+        background: white;
+        color: #c44569;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 5px 15px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+        Lihat Kue & Tiup Lilin! 🎂
+      </button>
+    </div>
+  `;
+
+        document.body.appendChild(alertDiv);
+
+        // Add event listener to the button
+        document
+          .getElementById("showCakeButton")
+          .addEventListener("click", function () {
+            // Remove the alert
+            alertDiv.remove();
+
+            // Show the cake
+            showCake();
+
+            // Continue with birthday celebration
+            celebrateBirthday();
+          });
+
+        // Add animations if not already added
+        if (!document.getElementById("birthday-alert-style")) {
+          const style = document.createElement("style");
+          style.id = "birthday-alert-style";
+          style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+    `;
+          document.head.appendChild(style);
+        }
+      }
+
       // Start the countdown
       countdownInterval = setInterval(updateCountdown, 1000);
       updateCountdown(); // Run once immediately
-
       // Password functions
       function showPasswordModal() {
         document.getElementById("passwordModal").classList.add("active");
