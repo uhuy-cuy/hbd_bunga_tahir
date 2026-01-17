@@ -1715,7 +1715,7 @@
         // If the countdown is finished
         if (distance < 0) {
           clearInterval(countdownInterval);
-        //   document.getElementById("days").innerText = "0";
+          //   document.getElementById("days").innerText = "0";
           document.getElementById("hours").innerText = "0";
           document.getElementById("minutes").innerText = "0";
           document.getElementById("seconds").innerText = "0";
@@ -2118,13 +2118,10 @@
         .addEventListener("click", function () {
           setTimeout(() => {
             const romanticMessages = [
-              "Setiap lilin yang kau tiup membawa harapan cinta kita yang abadi. Aku mencintaimu lebih dari kata-kata bisa ungkapkan! 💕✨. cintaku untukmu tak akan pernah padus. Selamat ulang tahun, cinta sejatiku! 🌹💖. semoga kita selalu bersama dalam suka dan duka. Aku sayang kamu selamanya! 💝🎂. Semoga setiap tahun bersamamu penuh dengan cinta, tawa, dan kebahagiaan. Aku mencintaimu tanpa batas! 💑🎉"
+              "Setiap lilin yang kau tiup membawa harapan cinta kita yang abadi. Aku mencintaimu lebih dari kata-kata bisa ungkapkan! 💕✨. cintaku untukmu tak akan pernah padus. Selamat ulang tahun, cinta sejatiku! 🌹💖. semoga kita selalu bersama dalam suka dan duka. Aku sayang kamu selamanya! 💝🎂. Semoga setiap tahun bersamamu penuh dengan cinta, tawa, dan kebahagiaan. Aku mencintaimu tanpa batas! 💑🎉",
             ];
 
-            const randomMessage =
-              romanticMessages[
-                Math.floor(Math.random() * romanticMessages.length)
-              ];
+            const randomMessage = romanticMessages;
 
             // Membuat custom alert yang lebih romantis
             const alertDiv = document.createElement("div");
